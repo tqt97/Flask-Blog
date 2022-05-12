@@ -6,7 +6,7 @@
         alt="author image" class="rounded-circle article-img">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{{ url_for('user_posts',username=post.author.username)  }}">
+            <a class="mr-2" href="{{ url_for('users.user_posts',username=post.author.username)  }}">
                 <i class="fas fa-user"></i>
                 {{ post.author.username }}</a>
             <small class="text-muted">
@@ -16,7 +16,7 @@
         </div>
         <h5>
             <a class="article-title"
-                href="{{ url_for('post',post_id=post.id) }}">
+                href="{{ url_for('posts.post',post_id=post.id) }}">
                 {{ post.title }}
             </a>
         </h5>
@@ -27,11 +27,11 @@
 {% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
     {% if page_num %}
         {% if posts.page == page_num %}
-        <a href="{{ url_for('home',page=page_num) }}"
+        <a href="{{ url_for('main.home',page=page_num) }}"
             class="btn btn-primary mb-4">{{ page_num }}
         </a>
         {% else %}
-        <a href="{{ url_for('home',page=page_num) }}"
+        <a href="{{ url_for('main.home',page=page_num) }}"
             class="btn btn-outline-primary mb-4">{{ page_num }}
         </a>
         {% endif %}
