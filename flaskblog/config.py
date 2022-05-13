@@ -2,7 +2,8 @@
 
 class Config:
     SECRET_KEY = '58fed6d2d4e1eae1c6e0ad8bf0a80d57'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    SQLALCHEMY_DATABASE_URI = 'DATABASE_URL: postgres://lznppakuwhysao:61661e0cbb69f27c878bef0025cdc839d9557719f30ad996608b072c00382e08@ec2-52-200-215-149.compute-1.amazonaws.com:5432/d4gmmoe235cob2'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
