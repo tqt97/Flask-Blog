@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h3>
+{% for post in posts.items %}
+<div class="row display-flex fh5co-post-entry mb-5">
+    {% for post in posts.items %}
+    <article class="col-lg-6 col-md-6 col-sm-4 col-xs-6 col-xxs-12 animate-box">
+        <figure>
+            <a href="{{ url_for('posts.post',post_id=post.id) }}">
+                <img src="{{ url_for('static',filename='profile_pics/'+post.author.image_file) }}"
+                    alt="Image" class="img-responsive">
+            </a>
+        </figure>
+        <span class="fh5co-meta">
+            <a href="{{ url_for('users.user_posts',username=post.author.username)  }}"
+                class="mr-2 author">
+                <i class="icon-user"></i>
+                {{ post.author.username }}
+            </a>
+            <i
+                class="icon-clock"></i>{{ post.date_posted.strftime('%Y-%m-%d') }}
+        </span>
+        <h2 class="fh5co-article-title">
+            <a
+                href="{{ url_for('posts.post',post_id=post.id) }}">{{ post.title }}</a>
+        </h2>
+
+    </article>
+    {% endfor %}
+</div>
+{% endfor %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+{% if posts.page == page_num %}
+<a class="btn btn-primary mb-4"
+    href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+{% else %}
+<a class="btn btn-outline-primary mb-4"
+    href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endblock content %}

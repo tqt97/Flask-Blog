@@ -1,43 +1,51 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 {% block content %}
-{% for post in posts.items %}
-<article class="media content-section">
-    <img src="{{ url_for('static',filename='profile_pics/'+post.author.image_file) }}"
-        alt="author image" class="rounded-circle article-img">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="{{ url_for('users.user_posts',username=post.author.username)  }}">
-                <i class="fas fa-user"></i>
-                {{ post.author.username }}</a>
-            <small class="text-muted">
-                <i class="fas fa-clock"></i>
-                {{ post.date_posted.strftime('%Y-%m-%d') }}
-            </small>
-        </div>
-        <h5>
-            <a class="article-title"
-                href="{{ url_for('posts.post',post_id=post.id) }}">
+
+<div class="row display-flex fh5co-post-entry mb-5">
+    {% for post in posts.items %}
+    <article class="col-lg-6 col-md-6 col-sm-4 col-xs-6 col-xxs-12 animate-box">
+        <figure>
+            <a href="{{ url_for('posts.post',post_id=post.id) }}">
+                <img src="{{ url_for('static',filename='uploads/posts/'+post.image) }}"
+                    alt="Image" class="img-responsive">
+            </a>
+        </figure>
+        <span class="fh5co-meta">
+            <a href="{{ url_for('users.user_posts',username=post.author.username)  }}"
+                class="mr-2 author">
+                <i class="icon-users"></i>
+                {{ post.author.username }}
+            </a>
+            <i class="icon-calendar"></i>
+            {{ post.date_posted.strftime('%Y-%m-%d') }}
+        </span>
+        <h2 class="fh5co-article-title">
+            <a href="{{ url_for('posts.post',post_id=post.id) }}">
                 {{ post.title }}
             </a>
-        </h5>
-        <p class="article-content">{{ post.content }}</p>
-    </div>
-</article>
-{% endfor %}
-{% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+        </h2>
+
+    </article>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+
+    {% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
     {% if page_num %}
-        {% if posts.page == page_num %}
-        <a href="{{ url_for('main.home',page=page_num) }}"
-            class="btn btn-primary mb-4">{{ page_num }}
-        </a>
-        {% else %}
-        <a href="{{ url_for('main.home',page=page_num) }}"
-            class="btn btn-outline-primary mb-4">{{ page_num }}
-        </a>
-        {% endif %}
+    {% if posts.page == page_num %}
+    <a href="{{ url_for('main.home',page=page_num) }}"
+        class="btn btn-primary mb-4">{{ page_num }}
+    </a>
+    {% else %}
+    <a href="{{ url_for('main.home',page=page_num) }}"
+        class="btn btn-outline-primary mb-4">{{ page_num }}
+    </a>
+    {% endif %}
     {% else %}
     ...
     {% endif %}
-{% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock content %}

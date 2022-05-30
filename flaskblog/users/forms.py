@@ -38,7 +38,7 @@ class UpdateAccountForm(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[
+    picture = FileField('Picture', validators=[
                         FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
@@ -65,7 +65,8 @@ class RequestResetForm(FlaskForm):
 
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[
+                             DataRequired(), Length(min=6, max=20)])
     confirm_password = PasswordField('Confirm Password', validators=[
                                      DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')

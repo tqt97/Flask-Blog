@@ -1,0 +1,70 @@
+<div id="fh5co-offcanvas">
+    <a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i
+                class="icon-cross3"></i> <span>Close</span></span></a>
+    <div class="fh5co-bio">
+        <figure>
+            <img src="{{ url_for('static',filename='images/person1.jpg') }}"
+                alt="Free HTML5 Bootstrap Template" class="img-responsive">
+        </figure>
+        <h3 class="heading">About Me</h3>
+        <h2>Tu Quoc Tuan</h2>
+        <p>Backend developer </p>
+        <ul class="fh5co-social">
+            <li><a href="#"><i class="icon-twitter"></i></a></li>
+            <li><a href="#"><i class="icon-facebook"></i></a></li>
+            <li><a href="#"><i class="icon-instagram"></i></a></li>
+        </ul>
+    </div>
+    <div class="fh5co-menu">
+        <div class="fh5co-box">
+            <a href="{{ url_for('main.home') }}">
+                <h3 class="heading">Home</h3>
+            </a>
+            <h3 class="heading">Categories</h3>
+            <ul class="category-ul">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Style</a></li>
+                <li><a href="#">Photography</a></li>
+                <li><a href="#">Food &amp; Drinks</a></li>
+                <li><a href="#">Culture</a></li>
+            </ul>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('posts.new_post') }}">
+                <h3 class="heading">Post</h3>
+            </a>
+            <a href="{{ url_for('users.account') }}">
+                <h3 class="heading">Account</h3>
+            </a>
+            <a href="{{ url_for('users.logout') }}">
+                <h3 class="heading">Logout</h3>
+            </a>
+            {% else %}
+            <a href="{{ url_for('users.login') }}">
+                <h3 class="heading">Login</h3>
+            </a>
+            <a href="{{ url_for('users.register') }}">
+                <h3 class="heading">Register</h3>
+            </a>
+            {% endif %}
+
+        </div>
+        <div class="fh5co-box">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                placeholder="Search" id="txtSearch" />
+                            <div class="input-group-btn">
+                                <button class="btn btn-search btn-primary"
+                                    type="submit">
+                                    <span class="icon-search2"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="animate-box">
+    <div class="col-md-12 col-md-offset-0 text-center fh5co-heading">
+        <h2><span>Login</span></h2>
+    </div>
+</div>
+<div class=" col-xs-12 mt-5 animate-box">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <div class="field">
+                {{ form.email.label }}
+                {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control") }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="field">
+                {{ form.password.label }}
+                {% if form.password.errors %}
+                {{ form.password(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+        </div>       
+        <div class="form-group mt-3">
+            {{ form.submit(class="btn btn-primary") }}
+            <small class="text-muted">
+                <a href="{{ url_for('users.reset_request') }}">Forgot Password ?</a>
+            </small>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Don't have an account?
+            <a class="ml-1" href="{{ url_for('users.register') }}">Sign up
+                here</a>
+        </small>
+    </div>
+</div>
+
+{% endblock %}
