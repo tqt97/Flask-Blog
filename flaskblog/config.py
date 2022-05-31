@@ -7,11 +7,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = 'kutuanonline199@gmail.com'
-    MAIL_PASSWORD = 'Tuquoc2021'
-    # MAIL_USERNAME = os.environ.get('EMAIL_USER')
-    # MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    MAIL_USE_TLS = True  
+    MAIL_USERNAME = os.environ.get('EMAIL_USER')
+    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
     UPLOAD_FOLDER = '/static/uploads/'
     # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
